@@ -5,13 +5,13 @@ from nonebot.adapters import Message
 from nonebot.params import CommandArg
 
 
-weather = on_command("谁是shit", rule=to_me(), aliases={"who is shit", "who's shit"}, priority=10, block=True)
+weather = on_command("天气", rule=to_me(), aliases={"weather", "今日天气"}, priority=10, block=True)
 
 @weather.handle()
 async def handle_function(args: Message = CommandArg()):
     # 提取参数纯文本作为地名，并判断是否有效
     if loaction := args.extract_plain_text():
-        await weather.finish(f"{loaction}是构思😜")
+        await weather.finish(f"{loaction}的天气是...")
     # await weather.send("名字是...")
     else:
         await weather.finish("请输入人名")
