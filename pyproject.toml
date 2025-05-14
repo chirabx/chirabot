@@ -5,15 +5,20 @@ description = "chirabot"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "httpx>=0.28.1",
     "nonebot-adapter-onebot>=2.4.6",
-    "nonebot-plugin-genshinuid>=4.8.2",
+    "nonebot-plugin-alconna>=0.57.6",
+    "nonebot-plugin-htmlrender>=0.6.5",
     "nonebot2[fastapi]>=2.4.2",
+    "openai>=1.78.1",
+    "playwright>=1.52.0",
+    "pyjwt[crypto]>=2.10.1",
 ]
 
 [tool.nonebot]
 adapters = [
     { name = "OneBot V11", module_name = "nonebot.adapters.onebot.v11" }
 ]
-plugins = ["GenshinUID"]
+plugins = []
 plugin_dirs = ["src/plugins"]
 builtin_plugins = ["echo"]
