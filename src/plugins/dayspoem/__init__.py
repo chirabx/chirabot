@@ -1,6 +1,6 @@
 from nonebot import  on_command
 from nonebot.typing import T_Handler 
-from .data_source import Source, sources
+from .dayspoem import Source, sources
 from nonebot.matcher import Matcher
 from nonebot.plugin import PluginMetadata
  
@@ -8,7 +8,7 @@ from nonebot.plugin import PluginMetadata
 __plugin_meta__ = PluginMetadata(
     name="今日诗词",
     description="这个插件会根据时间、地点、天气、事件智能推荐诗词！",
-    usage="/今日诗词",
+    usage="/今日诗词/今日简报",
 )
 def create_matchers():
     def create_handler(source: Source) -> T_Handler:
