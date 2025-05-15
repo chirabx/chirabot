@@ -1,7 +1,7 @@
 from nonebot.log import logger
 from nonebot.matcher import Matcher
 from nonebot.plugin import PluginMetadata, inherit_supported_adapters, require
-
+from nonebot import require
 require("nonebot_plugin_alconna")
 require("nonebot_plugin_htmlrender")
 
@@ -16,7 +16,6 @@ __plugin_meta__ = PluginMetadata(
     description="和风天气图片显示插件",
     usage="天气地名 / 地名天气",
     type="application",
-    homepage="https://github.com/kexue-z/nonebot-plugin-heweather",
     config=Config,
     supported_adapters=inherit_supported_adapters("nonebot_plugin_alconna"),
 )
