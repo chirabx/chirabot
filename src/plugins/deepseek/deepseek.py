@@ -6,6 +6,7 @@ from nonebot_plugin_alconna import (
     Args,
     Subcommand,
     on_alconna,
+    CommandMeta
 
 )
 from nonebot import get_driver
@@ -17,8 +18,11 @@ alc = Alconna(
     "ds",
     Subcommand(
         "input",
-        Args["ds input", str],
-        help_text="与机器人对话",
+        Args["ds", str],
+        help_text="与机器人对话，示例：ds 你好！",
+    ),
+    meta=CommandMeta(
+        description="与机器人对话，支持的子命令如下：\n示例：ds input 你好\n使用 -h 查看帮助"
     )
 )
 root_matcher = on_alconna(alc).dispatch("__init__")
@@ -32,7 +36,10 @@ res = Command("ds [...args]").build(
 @res.handle()
 async def _(result:CommandResult) -> None:
     args = result.result.all_matched_args.get("args",[])
-
+        # 检查用户是否请求帮助
+    if "-h" in args:
+        await UniMessage.text(text=alc.help_text).send()
+        return
     str_args = [str(arg) for arg in args]
     user_message = " ".join(str_args) if str_args else " "
     response = client.chat.completions.create(
