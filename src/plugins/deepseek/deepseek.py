@@ -7,7 +7,6 @@ from nonebot_plugin_alconna import (
     Subcommand,
     on_alconna,
     CommandMeta
-
 )
 from nonebot import get_driver
 from openai import OpenAI

@@ -1,4 +1,13 @@
-from nonebot_plugin_alconna import Alconna, CommandMeta, on_alconna
+from nonebot_plugin_alconna import (
+    Command, 
+    CommandResult, 
+    UniMessage,
+    Alconna,
+    Args,
+    Subcommand,
+    on_alconna,
+    CommandMeta
+)
 
 alc = Alconna(
     "ciallo",   

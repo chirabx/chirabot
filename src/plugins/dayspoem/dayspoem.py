@@ -1,12 +1,10 @@
-import asyncio
 from httpx import AsyncClient
 from nonebot.adapters.onebot.v11 import Message
 import re
-from dataclasses import dataclass
-from typing import Tuple, Optional, Protocol
+from typing import Optional
 
 # 每日简报
-async def _brief():
+async def get_brief() -> Optional[Message]:
     """每日简报的获取"""
     async with AsyncClient() as client:
         try:
@@ -18,11 +16,10 @@ async def _brief():
             url = re.findall('"tp":"(?P<url>.*?)"', resp.text)[0]
 
         pic_ti = f"[CQ:image,file={url}]"
-
     return Message(pic_ti)
 
 # 诗词
-async def _poem():
+async def get_poem() -> Optional[Message]:
     """获取随机诗词"""
     async with AsyncClient() as client:
         ret = await client.get("https://v2.jinrishici.com/token")
@@ -53,20 +50,3 @@ async def _poem():
             return Message(content)
         else:
             return Message("获取失败，请重新尝试！")
-
-class Func(Protocol):
-    # 声明为函数
-    async def __call__(self) -> Optional[Message]:
-        ...
-
-@dataclass
-class Source:
-    # 用来存储数据的类
-    name: str
-    keywords: Tuple[str, ...]
-    func: Func
-
-sources = [
-    Source("brief", ("简报", "今日简报"), _brief),
-    Source("poem", ("诗词", "诗", "今日诗词"), _poem)
-]
