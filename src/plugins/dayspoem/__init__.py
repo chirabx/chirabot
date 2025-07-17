@@ -46,5 +46,5 @@ async def daily_brief_push():
     result = await get_brief()
     if result:
         for group_id in target_group_id:
-            await bot.send_group_msg(group_id=target_group_id, message=result)
-            await bot.send_group_msg(group_id=target_group_id, message="今日简报已送达")
+            await bot.send_group_msg(group_id=group_id, message=result)
+            await bot.send_group_msg(group_id=group_id, message="今日简报已送达")
