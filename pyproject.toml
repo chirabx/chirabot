@@ -34,3 +34,7 @@ plugins = [
 ]
 plugin_dirs = ["src/plugins"]
 builtin_plugins = ["echo"]
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
